@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="flex flex-col items-center justify-center h-screen bg-gradient-to-r from-green-400 to-blue-500 text-white">
+    <div class="bg-white p-6 rounded-xl shadow-lg text-center text-gray-800 w-96">
+        <h2 class="text-2xl font-bold">Welcome 🎉</h2>
+        <p id="userEmail" class="text-gray-600 mt-2"></p>
+        <button id="logoutBtn" class="mt-4 bg-red-500 text-white px-4 py-2 rounded-lg hover:bg-red-600 transition">Logout</button>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const loggedInUser = sessionStorage.getItem("loggedInUser");
+            if (!loggedInUser) {
+                window.location.href = "login.html";
+            } else {
+                document.getElementById("userEmail").innerText = `Logged in as: ${loggedInUser}`;
+            }
+        });
+
+        document.getElementById("logoutBtn").addEventListener("click", () => {
+            sessionStorage.removeItem("loggedInUser");
+            window.location.href = "index.html";
+        });
+    </script>
+</body>
+</html>
